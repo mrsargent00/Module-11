@@ -17,11 +17,11 @@ app.get('/api/notes', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './index.html')); // Serve the main HTML file for the root route.
+    res.sendFile(path.join(__dirname, './public/index.html')); // Serve the main HTML file for the root route.
 });
 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './notes.html')); // Serve the HTML file for the '/notes' route.
+    res.sendFile(path.join(__dirname, './public/notes.html')); // Serve the HTML file for the '/notes' route.
 });
 
 // Function to create a new note.
@@ -37,7 +37,7 @@ function createNewNote(body, notesArray) {
     notesArray[0]++;
     notesArray.push(newNote);
     fs.writeFileSync(
-        path.join(__dirname, 'db/db.json'),
+        path.join(__dirname, './db/db.json'),
         JSON.stringify(notesArray, null, 2)
     );
     return newNote;
@@ -54,7 +54,7 @@ function deleteNote(id, notesArray) {
         if (note.id == id) {
             notesArray.splice(i, 1);
             fs.writeFileSync(
-                path.join(__dirname, '/db/db.json'),
+                path.join(__dirname, './db/db.json'),
                 JSON.stringify(notesArray, null, 2)
             );
 
